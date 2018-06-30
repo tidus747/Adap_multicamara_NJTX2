@@ -1,4 +1,4 @@
-<img width="320" src="https://eldia.es/eldiaes/imagenes/2018/04/26/1524729991814k.jpg" align="right" />
+<img width="320" src="https://olimex.files.wordpress.com/2013/11/open_source_hardware_logo-t.png" align="right" />
 
 # Desarrollo de la adaptación para multicámara de la Nvidia Jetson TX2
 > Titulación: Máster en Ingeniería Industrial
@@ -6,6 +6,8 @@
 > Autor: Iván Rodríguez Méndez
 
 > Tutor: Fernando Luis Rosa González
+
+> Universidad de la Laguna, 2018
 
 ## Resumen
 
