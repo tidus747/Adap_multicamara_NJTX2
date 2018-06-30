@@ -1,4 +1,4 @@
-<img width="300" src="./images/Array_3D/soporte_frontal.png" align="right" />
+<img width="300" src="https://github.com/tidus747/Adap_multicamara_NJTX2/blob/master/images/Array_3D%20/soporte_frontal.png?raw=true" align="right" />
 
 # Desarrollo de la adaptación para multicámara de la Nvidia Jetson TX2
 > Titulación: Máster en Ingeniería Industrial
