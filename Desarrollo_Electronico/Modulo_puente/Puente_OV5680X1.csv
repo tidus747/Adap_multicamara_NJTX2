@@ -1,0 +1,9 @@
+"Id";"Designator";"Package";"Quantity";"Designation";"Supplier and ref";
+1;"REF**,REF**,REF**";"MountingHole_3.2mm_M3";3;"MountingHole_3.2mm_M3";;;
+2;"REF***";"OSHW-Logo2_9.8x8mm_SilkScreen";1;"OSHW-Logo2_9.8x8mm_SilkScreen";;;
+3;"REF***";"KiCad-Logo2_12mm_SilkScreen";1;"KiCad-Logo2_12mm_SilkScreen";;;
+4;"C1";"C_1206_HandSoldering";1;"0.1uF";;;
+5;"U1";"TSSOP-8_4.4x3mm_Pitch0.65mm";1;"AT24CS02-MAHM";;;
+6;"R5,R4,R3";"R_1206_HandSoldering";3;"4,7k";;;
+7;"J1";"Molex-FPC_30";1;"Conn_01x30";;;
+8;"P1";"QTH-060-01-H-D-A";1;"QTH-060-01-H-D-A";;;

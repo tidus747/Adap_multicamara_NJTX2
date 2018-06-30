@@ -1,0 +1,10 @@
+Id,Identificador,Empaquetado,Cantidad,Identificación,Suministrador y ref
+1,"REF**,REF**,REF**",MountingHole_3.2mm_M3,3,MountingHole_3.2mm_M3,
+2,U1,SOIC-8_3.9x4.9mm_Pitch1.27mm,1,AT24CS02-MAHM,https://www.mouser.es/ProductDetail/Atmel/AT24CS02-SSHM-B/?qs=YAvGbpKWXiSbI%252bYR%252bSoH%252bA==
+3,C1,C_0805_HandSoldering,1,0.1uF,https://www.mouser.es/ProductDetail/Taiyo-Yuden/LMK212SD104JG-T?qs=sGAEpiMZZMs0AnBnWHyRQAEIN6r3SS%2fOHyWr%2fZDQbBQ%3d
+4,"R1,R2",R_0805_HandSoldering,2,0,https://www.mouser.es/ProductDetail/Vishay-Draloric/CRCW08050000Z0EAHP?qs=pTGEtN%252bMLlDLrJUqQmN2jA%3d%3d
+5,"R3,R4,R5",R_0805_HandSoldering,3,"4,7k",https://store.comet.bg/en/Catalogue/Product/22769/
+6,J1,CABLINE-VS-I-PEX,1,Conn_01x30,https://www.i-pex.com/Products/detail/25
+7,P1,QTH-060-01-H-D-A,1,QTH-060-01-H-D-A,https://www.digikey.com/product-detail/en/samtec-inc/QTH-060-01-H-D-A/SAM12792-ND/6695553
+8,REF***,OSHW-Logo2_9.8x8mm_SilkScreen,1,OSHW-Logo2_9.8x8mm_SilkScreen,
+9,REF***,KiCad-Logo2_12mm_SilkScreen,1,KiCad-Logo2_12mm_SilkScreen,

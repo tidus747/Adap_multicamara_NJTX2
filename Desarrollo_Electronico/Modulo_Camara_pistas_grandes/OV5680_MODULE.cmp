@@ -1,0 +1,155 @@
+Cmp-Mod V01 Created by PcbNew   date = mar 30 ene 2018 00:43:24 WET
+
+BeginCmp
+TimeStamp = 5A69BFD7
+Path = /5A691909
+Reference = U1;
+ValeurCmp = OV5680;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x30_Pitch1.27mm_SMD_Pin1Left;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A6FB477
+Path = /5A6F62A1
+Reference = D1;
+ValeurCmp = ZENER;
+IdModule  = Diodes_SMD:D_1206;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A6FB47D
+Path = /5A6F73A7
+Reference = D2;
+ValeurCmp = ZENER;
+IdModule  = Diodes_SMD:D_1206;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A6FB491
+Path = /5A70470B
+Reference = D3;
+ValeurCmp = EClamp2398P;
+IdModule  = Housings_SSOP:MSOP-16_3x4mm_Pitch0.5mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A6FB49D
+Path = /5A6FA789
+Reference = IC1;
+ValeurCmp = AT24CS02-MAHM;
+IdModule  = Housings_SSOP:MSOP-8_3x3mm_Pitch0.65mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A6FB4A3
+Path = /5A6FC4F6
+Reference = R1;
+ValeurCmp = 4.7k;
+IdModule  = Resistors_SMD:R_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A6FB4A9
+Path = /5A6FC57B
+Reference = R2;
+ValeurCmp = 4.7k;
+IdModule  = Resistors_SMD:R_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A6FB4AF
+Path = /5A6FBD9A
+Reference = R3;
+ValeurCmp = 4.7k;
+IdModule  = Resistors_SMD:R_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A6FB4B5
+Path = /5A71159C
+Reference = R4;
+ValeurCmp = 0;
+IdModule  = Resistors_SMD:R_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A6FB4BB
+Path = /5A6F86D5
+Reference = R5;
+ValeurCmp = 0;
+IdModule  = Resistors_SMD:R_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A6FB4DB
+Path = /5A6F60E7
+Reference = C1;
+ValeurCmp = 0.1uF;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A6FB4E0
+Path = /5A700454
+Reference = C2;
+ValeurCmp = 0.1uF;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A6FB4E5
+Path = /5A6F6156
+Reference = C3;
+ValeurCmp = 4.7uF;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A6FB4EA
+Path = /5A6F618D
+Reference = C4;
+ValeurCmp = 0.1uF;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A6FB4EF
+Path = /5A6F61C6
+Reference = C5;
+ValeurCmp = 0.1uF;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A6FB4F4
+Path = /5A6F7357
+Reference = C6;
+ValeurCmp = 4.7uF;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A6FB4F9
+Path = /5A6F7380
+Reference = C7;
+ValeurCmp = 0.1uF;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A6FBDD5
+Path = 
+Reference = REF***;
+ValeurCmp = KiCad-Logo2_6mm_SilkScreen;
+IdModule  = Symbols:KiCad-Logo2_6mm_SilkScreen;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A69BFB5
+Path = /5A691CF1
+Reference = P1;
+ValeurCmp = CONN_01X30;
+IdModule  = Connectors_Hirose:Hirose_DF52-20S-0.8H_20x0.80mm_Angled;
+EndCmp
+
+EndListe

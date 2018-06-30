@@ -1,0 +1,16 @@
+Id,Identificador,Empaquetado,Cantidad,Identificación,Suministrador y ref
+1,"REF**,REF**,REF**,REF**",MountingHole_2.5mm_Pad,4,MountingHole_2.5mm_Pad,
+2,"R1,R2",R_0603_HandSoldering,2,4.7k,https://store.comet.bg/en/Catalogue/Product/28159/
+3,R3,R_0603_HandSoldering,1,"4,7k",https://store.comet.bg/en/Catalogue/Product/28159/
+4,"R4,R5",R_0603_HandSoldering,2,0,http://uk.farnell.com/yageo/rc0603fr-070rl/res-thick-film-0r-1-0-1w-0603/dp/2309106
+5,IC1,SOIC-8_3.9x4.9mm_Pitch1.27mm,1,AT24CS02-MAHM,https://www.mouser.es/ProductDetail/Atmel/AT24CS02-SSHM-B/?qs=YAvGbpKWXiSbI%252bYR%252bSoH%252bA==
+6,"C1,C2,C4,C5,C7",C_1206_HandSoldering,5,0.1uF,https://www.mouser.es/ProductDetail/AVX/12066D104KAT4A?qs=sGAEpiMZZMs0AnBnWHyRQHBIeb04j8IHWnPONqCDu8A%3d
+7,"C3,C6",C_1206_HandSoldering,2,4.7uF,https://www.mouser.es/ProductDetail/Wurth-Electronics/885012208002?qs=sGAEpiMZZMs0AnBnWHyRQEGbLOF2VP1ij3j%2fDuwHSz1WRyN26Uf64Q%3d%3d
+8,"C8,C9,C10,C11,C12,C13,C14,C15,C16,C17,C18,C19,C20,C21,C22,C23,C24,C25",C_1206_HandSoldering,18,12pF,https://www.mouser.es/ProductDetail/Vishay-Vitramon/VJ1206A120FXQCW1BC?qs=sGAEpiMZZMs0AnBnWHyRQKsgPTXVq8S7Eyp6oKbqqbU%3d
+9,"D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,D11,D12,D13,D14",D_0805,14,ZENER,https://www.mouser.es/ProductDetail/Taiwan-Semiconductor/BZY55C4V7?qs=sGAEpiMZZMtQ8nqTKtFS%2fEOKUcP6PCYS6mJZ34RG0OU%3d
+10,"L1,L2,L3,L4,L5,L6,L7,L8,L9,L10,L11,L12",SELF-WE-TPC_M,12,19nH,https://www.mouser.es/ProductDetail/Murata-Electronics/LQW18AN19NJ80D?qs=sGAEpiMZZMsg%252by3WlYCkU1Cm1M%2foYd60c1uRU%2fSRbA8%3d
+11,P1,CABLINE-VS-I-PEX,1,CONN_01X30,https://www.i-pex.com/Products/detail/25
+12,U1,SOIC-30-MOD,1,OV5680,
+13,REF***,OSHW-Logo2_14.6x12mm_Copper,1,OSHW-Logo2_14.6x12mm_Copper,
+14,REF***,KiCad-Logo2_8mm_SilkScreen,1,KiCad-Logo2_8mm_SilkScreen,
+15,G***,LOGO,1,LOGO,

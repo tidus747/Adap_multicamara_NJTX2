@@ -30,3 +30,5 @@ developed in the configuration of the kernel and the Device tree for the correct
 operation of the cameras. By Finally, the software calibration of the array of cameras and an algorithm for the estimation of disparity maps.
 
 ## Organización del repositorio
+
+## Resultados

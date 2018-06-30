@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>/home/ivan/tfm_ivan/Electrónica/Diseño/Modulo_Camara/OV5680_MODULE.sch</source>
+    <date>vie 09 feb 2018 11:51:40 WET</date>
+    <tool>Eeschema 4.0.6+dfsg1-1</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title>OV5680 CAMERA MODULE</title>
+        <company>University of La Laguna</company>
+        <rev>1.1</rev>
+        <date>2018-01-24</date>
+        <source>OV5680_MODULE.sch</source>
+        <comment number="1" value="Implementation of a multi-camera adapter"/>
+        <comment number="2" value="Ivan Rodriguez Mendez"/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="U1">
+      <value>OV5680</value>
+      <footprint>Pin_Headers:Pin_Header_Straight_1x30_Pitch1.27mm_SMD_Pin1Left</footprint>
+      <libsource lib="ov5680" part="OV5680"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A691909</tstamp>
+    </comp>
+    <comp ref="P1">
+      <value>CONN_01X30</value>
+      <footprint>Connectors_Molex:Molex_Panelmate-53780-3070_30x1.25mm_Angled</footprint>
+      <libsource lib="conn" part="CONN_01X30"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A691CF1</tstamp>
+    </comp>
+    <comp ref="C1">
+      <value>0.1uF</value>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A6F60E7</tstamp>
+    </comp>
+    <comp ref="C3">
+      <value>4.7uF</value>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A6F6156</tstamp>
+    </comp>
+    <comp ref="C4">
+      <value>0.1uF</value>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A6F618D</tstamp>
+    </comp>
+    <comp ref="C5">
+      <value>0.1uF</value>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A6F61C6</tstamp>
+    </comp>
+    <comp ref="D1">
+      <value>ZENER</value>
+      <footprint>SMD_Packages:SMD-1206_Pol</footprint>
+      <libsource lib="OV5680_MODULE-cache" part="ZENER"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A6F62A1</tstamp>
+    </comp>
+    <comp ref="C6">
+      <value>4.7uF</value>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A6F7357</tstamp>
+    </comp>
+    <comp ref="C7">
+      <value>0.1uF</value>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A6F7380</tstamp>
+    </comp>
+    <comp ref="D2">
+      <value>ZENER</value>
+      <footprint>SMD_Packages:SMD-1206_Pol</footprint>
+      <libsource lib="OV5680_MODULE-cache" part="ZENER"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A6F73A7</tstamp>
+    </comp>
+    <comp ref="R5">
+      <value>0</value>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A6F86D5</tstamp>
+    </comp>
+    <comp ref="IC1">
+      <value>AT24CS02-MAHM</value>
+      <footprint>Housings_SSOP:MSOP-8_3x3mm_Pitch0.65mm</footprint>
+      <libsource lib="memory" part="AT24CS02-MAHM"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A6FA789</tstamp>
+    </comp>
+    <comp ref="R1">
+      <value>4.7k</value>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A6FC4F6</tstamp>
+    </comp>
+    <comp ref="R2">
+      <value>4.7k</value>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A6FC57B</tstamp>
+    </comp>
+    <comp ref="C2">
+      <value>0.1uF</value>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A700454</tstamp>
+    </comp>
+    <comp ref="D3">
+      <value>EClamp2398P</value>
+      <footprint>Housings_SSOP:TSSOP-16_4.4x5mm_Pitch0.65mm</footprint>
+      <libsource lib="OV5680_MODULE-cache" part="EClamp2398P"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A70470B</tstamp>
+    </comp>
+    <comp ref="R4">
+      <value>0</value>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A71159C</tstamp>
+    </comp>
+    <comp ref="R3">
+      <value>4,7k</value>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A7C9326</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="memory" part="AT24CS01-MAHM">
+      <aliases>
+        <alias>AT24CS02-MAHM</alias>
+      </aliases>
+      <description>1Kb (128x8) Serial EEPROM with Unique Serial Number, UDFN8</description>
+      <docs>http://www.atmel.com/Images/Atmel-8815-SEEPROM-AT24CS01-02-Datasheet.pdf</docs>
+      <footprints>
+        <fp>UDFN*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">AT24CS01-MAHM</field>
+        <field name="Footprint">UDFN8</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A0" type="input"/>
+        <pin num="2" name="A1" type="input"/>
+        <pin num="3" name="A2" type="input"/>
+        <pin num="4" name="GND" type="power_in"/>
+        <pin num="5" name="SDA" type="BiDi"/>
+        <pin num="6" name="SCL" type="input"/>
+        <pin num="7" name="WP" type="input"/>
+        <pin num="8" name="VCC" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="C">
+      <description>Unpolarized capacitor</description>
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="conn" part="CONN_01X30">
+      <description>Connector, single row, 01x30, pin header</description>
+      <footprints>
+        <fp>Pin_Header_Straight_1X*</fp>
+        <fp>Pin_Header_Angled_1X*</fp>
+        <fp>Socket_Strip_Straight_1X*</fp>
+        <fp>Socket_Strip_Angled_1X*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">CONN_01X30</field>
+      </fields>
+      <pins>
+        <pin num="1" name="P1" type="passive"/>
+        <pin num="2" name="P2" type="passive"/>
+        <pin num="3" name="P3" type="passive"/>
+        <pin num="4" name="P4" type="passive"/>
+        <pin num="5" name="P5" type="passive"/>
+        <pin num="6" name="P6" type="passive"/>
+        <pin num="7" name="P7" type="passive"/>
+        <pin num="8" name="P8" type="passive"/>
+        <pin num="9" name="P9" type="passive"/>
+        <pin num="10" name="P10" type="passive"/>
+        <pin num="11" name="P11" type="passive"/>
+        <pin num="12" name="P12" type="passive"/>
+        <pin num="13" name="P13" type="passive"/>
+        <pin num="14" name="P14" type="passive"/>
+        <pin num="15" name="P15" type="passive"/>
+        <pin num="16" name="P16" type="passive"/>
+        <pin num="17" name="P17" type="passive"/>
+        <pin num="18" name="P18" type="passive"/>
+        <pin num="19" name="P19" type="passive"/>
+        <pin num="20" name="P20" type="passive"/>
+        <pin num="21" name="P21" type="passive"/>
+        <pin num="22" name="P22" type="passive"/>
+        <pin num="23" name="P23" type="passive"/>
+        <pin num="24" name="P24" type="passive"/>
+        <pin num="25" name="P25" type="passive"/>
+        <pin num="26" name="P26" type="passive"/>
+        <pin num="27" name="P27" type="passive"/>
+        <pin num="28" name="P28" type="passive"/>
+        <pin num="29" name="P29" type="passive"/>
+        <pin num="30" name="P30" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="OV5680_MODULE-cache" part="EClamp2398P">
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">EClamp2398P</field>
+      </fields>
+      <pins>
+        <pin num="1" name="In" type="input"/>
+        <pin num="2" name="In" type="input"/>
+        <pin num="3" name="In" type="input"/>
+        <pin num="4" name="In" type="input"/>
+        <pin num="5" name="In" type="input"/>
+        <pin num="6" name="In" type="input"/>
+        <pin num="7" name="In" type="input"/>
+        <pin num="8" name="In" type="input"/>
+        <pin num="9" name="OUT" type="input"/>
+        <pin num="10" name="OUT" type="input"/>
+        <pin num="11" name="OUT" type="input"/>
+        <pin num="12" name="OUT" type="input"/>
+        <pin num="13" name="OUT" type="input"/>
+        <pin num="14" name="OUT" type="input"/>
+        <pin num="15" name="OUT" type="input"/>
+        <pin num="16" name="OUT" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="ov5680" part="OV5680">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">OV5680</field>
+      </fields>
+      <pins>
+        <pin num="1" name="DGND" type="input"/>
+        <pin num="2" name="FREX" type="input"/>
+        <pin num="3" name="MDP1" type="input"/>
+        <pin num="4" name="DGND" type="input"/>
+        <pin num="5" name="MDN1" type="input"/>
+        <pin num="6" name="DVDD" type="input"/>
+        <pin num="7" name="DGND" type="input"/>
+        <pin num="8" name="DVDD" type="input"/>
+        <pin num="9" name="MDP0" type="input"/>
+        <pin num="10" name="DGND" type="input"/>
+        <pin num="11" name="MDN0" type="input"/>
+        <pin num="12" name="FSIN" type="input"/>
+        <pin num="13" name="DGND" type="input"/>
+        <pin num="14" name="D0VDD" type="input"/>
+        <pin num="15" name="MCP" type="input"/>
+        <pin num="16" name="DGND" type="input"/>
+        <pin num="17" name="MCN" type="input"/>
+        <pin num="18" name="PWDN" type="input"/>
+        <pin num="19" name="DGND" type="input"/>
+        <pin num="20" name="AF_VDD" type="input"/>
+        <pin num="21" name="XCLK" type="input"/>
+        <pin num="22" name="DGND" type="input"/>
+        <pin num="23" name="DGND" type="input"/>
+        <pin num="24" name="AGND" type="input"/>
+        <pin num="25" name="SIOC" type="input"/>
+        <pin num="26" name="AVDD" type="input"/>
+        <pin num="27" name="SIOD" type="input"/>
+        <pin num="28" name="STROBE" type="input"/>
+        <pin num="29" name="DGND" type="input"/>
+        <pin num="30" name="RESET" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="R">
+      <description>Resistor</description>
+      <footprints>
+        <fp>R_*</fp>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="OV5680_MODULE-cache" part="ZENER">
+      <footprints>
+        <fp>D?</fp>
+        <fp>SO*</fp>
+        <fp>SM*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">ZENER</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="device">
+      <uri>/usr/share/kicad/library/device.lib</uri>
+    </library>
+    <library logical="conn">
+      <uri>/usr/share/kicad/library/conn.lib</uri>
+    </library>
+    <library logical="memory">
+      <uri>/usr/share/kicad/library/memory.lib</uri>
+    </library>
+    <library logical="ov5680">
+      <uri>ov5680.lib</uri>
+    </library>
+    <library logical="OV5680_MODULE-cache">
+      <uri>/home/ivan/tfm_ivan/Electrónica/Diseño/Modulo_Camara/OV5680_MODULE-cache.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="CAM_MLCK_D">
+      <node ref="R4" pin="2"/>
+    </net>
+    <net code="2" name="CAM_I2C_SDA_D">
+      <node ref="D3" pin="15"/>
+      <node ref="U1" pin="27"/>
+    </net>
+    <net code="3" name="Net-(D3-Pad10)">
+      <node ref="D3" pin="10"/>
+    </net>
+    <net code="4" name="Net-(D3-Pad9)">
+      <node ref="D3" pin="9"/>
+    </net>
+    <net code="5" name="CAM_I2C_SLC_D">
+      <node ref="D3" pin="14"/>
+    </net>
+    <net code="6" name="Net-(D3-Pad8)">
+      <node ref="D3" pin="8"/>
+    </net>
+    <net code="7" name="Net-(D3-Pad7)">
+      <node ref="D3" pin="7"/>
+    </net>
+    <net code="8" name="FLASH_STROBE">
+      <node ref="P1" pin="15"/>
+      <node ref="D3" pin="6"/>
+    </net>
+    <net code="9" name="AGND">
+      <node ref="R5" pin="2"/>
+      <node ref="D2" pin="2"/>
+      <node ref="C7" pin="2"/>
+      <node ref="C6" pin="2"/>
+      <node ref="U1" pin="24"/>
+    </net>
+    <net code="10" name="CON_CSI_D1_P">
+      <node ref="U1" pin="3"/>
+    </net>
+    <net code="11" name="CON_CSI_D1_N">
+      <node ref="U1" pin="5"/>
+    </net>
+    <net code="12" name="CON_CSI_D0_N">
+      <node ref="U1" pin="11"/>
+      <node ref="P1" pin="5"/>
+    </net>
+    <net code="13" name="Net-(IC1-Pad2)">
+      <node ref="IC1" pin="2"/>
+      <node ref="R2" pin="2"/>
+    </net>
+    <net code="14" name="DVDD_CAM_IO_1V8">
+      <node ref="R3" pin="1"/>
+      <node ref="U1" pin="14"/>
+      <node ref="C4" pin="1"/>
+      <node ref="C2" pin="1"/>
+      <node ref="R2" pin="1"/>
+      <node ref="R1" pin="1"/>
+      <node ref="IC1" pin="8"/>
+      <node ref="C1" pin="1"/>
+      <node ref="P1" pin="22"/>
+      <node ref="C3" pin="1"/>
+      <node ref="C5" pin="1"/>
+      <node ref="D1" pin="1"/>
+    </net>
+    <net code="15" name="CAM0_RST_L">
+      <node ref="D3" pin="1"/>
+    </net>
+    <net code="16" name="CAM_RST_D">
+      <node ref="U1" pin="30"/>
+      <node ref="D3" pin="16"/>
+    </net>
+    <net code="17" name="CAM_PWDN_D">
+      <node ref="U1" pin="18"/>
+      <node ref="D3" pin="13"/>
+      <node ref="D3" pin="12"/>
+    </net>
+    <net code="18" name="FLASH_STROBE_D">
+      <node ref="D3" pin="11"/>
+      <node ref="U1" pin="28"/>
+    </net>
+    <net code="19" name="CAM_PWDN">
+      <node ref="P1" pin="19"/>
+      <node ref="D3" pin="5"/>
+    </net>
+    <net code="20" name="CAM0_MLCK">
+      <node ref="D3" pin="4"/>
+    </net>
+    <net code="21" name="CAM_I2C_SLC">
+      <node ref="D3" pin="3"/>
+    </net>
+    <net code="22" name="CAM_I2C_SCL_D">
+      <node ref="U1" pin="25"/>
+    </net>
+    <net code="23" name="Net-(IC1-Pad3)">
+      <node ref="R1" pin="2"/>
+      <node ref="IC1" pin="3"/>
+    </net>
+    <net code="24" name="Net-(IC1-Pad1)">
+      <node ref="IC1" pin="1"/>
+      <node ref="R3" pin="2"/>
+    </net>
+    <net code="25" name="CON_CSI_D0_P">
+      <node ref="U1" pin="9"/>
+      <node ref="P1" pin="4"/>
+    </net>
+    <net code="26" name="Net-(R4-Pad1)">
+      <node ref="U1" pin="21"/>
+      <node ref="R4" pin="1"/>
+    </net>
+    <net code="27" name="AVDD_CAM">
+      <node ref="C6" pin="1"/>
+      <node ref="C7" pin="1"/>
+      <node ref="U1" pin="26"/>
+      <node ref="U1" pin="20"/>
+      <node ref="P1" pin="16"/>
+      <node ref="D2" pin="1"/>
+    </net>
+    <net code="28" name="CAM_I2C_SCL">
+      <node ref="IC1" pin="6"/>
+      <node ref="P1" pin="12"/>
+    </net>
+    <net code="29" name="CAM_RST_L">
+      <node ref="P1" pin="14"/>
+    </net>
+    <net code="30" name="Net-(P1-Pad28)">
+      <node ref="P1" pin="28"/>
+    </net>
+    <net code="31" name="AF_VDD">
+      <node ref="P1" pin="18"/>
+    </net>
+    <net code="32" name="Net-(P1-Pad27)">
+      <node ref="P1" pin="27"/>
+    </net>
+    <net code="33" name="Net-(P1-Pad26)">
+      <node ref="P1" pin="26"/>
+    </net>
+    <net code="34" name="Net-(P1-Pad25)">
+      <node ref="P1" pin="25"/>
+    </net>
+    <net code="35" name="VDD_5V0_IO_SYS">
+      <node ref="P1" pin="24"/>
+    </net>
+    <net code="36" name="DGND">
+      <node ref="U1" pin="29"/>
+      <node ref="U1" pin="16"/>
+      <node ref="R5" pin="1"/>
+      <node ref="IC1" pin="4"/>
+      <node ref="U1" pin="1"/>
+      <node ref="C1" pin="2"/>
+      <node ref="C3" pin="2"/>
+      <node ref="C4" pin="2"/>
+      <node ref="C5" pin="2"/>
+      <node ref="D1" pin="2"/>
+      <node ref="P1" pin="11"/>
+      <node ref="P1" pin="21"/>
+      <node ref="P1" pin="23"/>
+      <node ref="P1" pin="17"/>
+      <node ref="C2" pin="2"/>
+      <node ref="IC1" pin="7"/>
+      <node ref="U1" pin="22"/>
+      <node ref="P1" pin="3"/>
+      <node ref="P1" pin="6"/>
+      <node ref="U1" pin="19"/>
+      <node ref="U1" pin="2"/>
+      <node ref="U1" pin="4"/>
+      <node ref="U1" pin="7"/>
+      <node ref="U1" pin="12"/>
+      <node ref="U1" pin="13"/>
+      <node ref="U1" pin="23"/>
+      <node ref="U1" pin="10"/>
+      <node ref="P1" pin="9"/>
+    </net>
+    <net code="37" name="Net-(P1-Pad30)">
+      <node ref="P1" pin="30"/>
+    </net>
+    <net code="38" name="CAM0_MCLK">
+      <node ref="P1" pin="10"/>
+    </net>
+    <net code="39" name="Net-(P1-Pad29)">
+      <node ref="P1" pin="29"/>
+    </net>
+    <net code="40" name="DVDD_CAM_IO_1V2">
+      <node ref="P1" pin="20"/>
+      <node ref="U1" pin="6"/>
+      <node ref="U1" pin="8"/>
+    </net>
+    <net code="41" name="CON_CSI_C_D1_N">
+      <node ref="P1" pin="2"/>
+    </net>
+    <net code="42" name="CON_CSI_C_D1_P">
+      <node ref="P1" pin="1"/>
+    </net>
+    <net code="43" name="CON_CSI_CLK_N">
+      <node ref="U1" pin="17"/>
+      <node ref="P1" pin="8"/>
+    </net>
+    <net code="44" name="CON_CSI_CLK_P">
+      <node ref="P1" pin="7"/>
+      <node ref="U1" pin="15"/>
+    </net>
+    <net code="45" name="CAM_I2C_SDA">
+      <node ref="IC1" pin="5"/>
+      <node ref="P1" pin="13"/>
+      <node ref="D3" pin="2"/>
+    </net>
+  </nets>
+</export>

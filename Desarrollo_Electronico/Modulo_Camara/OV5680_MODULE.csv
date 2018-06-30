@@ -1,0 +1,15 @@
+"Id";"Designator";"Package";"Quantity";"Designation";"Supplier and ref";
+1;"REF**,REF**,REF**,REF**";"MountingHole_2.5mm_Pad";4;"MountingHole_2.5mm_Pad";;;
+2;"C1,C2,C4,C5,C7";"C_1206_HandSoldering";5;"0.1uF";;;
+3;"C3,C6";"C_1206_HandSoldering";2;"4.7uF";;;
+4;"C8,C9,C10,C11,C12,C13,C14,C15,C16,C17,C18,C19,C20,C21,C22,C23,C24,C25";"C_1206_HandSoldering";18;"12pF";;;
+5;"U1";"SOIC-30-MOD";1;"OV5680";;;
+6;"REF***";"OSHW-Logo2_14.6x12mm_Copper";1;"OSHW-Logo2_14.6x12mm_Copper";;;
+7;"REF***";"KiCad-Logo2_8mm_SilkScreen";1;"KiCad-Logo2_8mm_SilkScreen";;;
+8;"G***";"LOGO";1;"LOGO";;;
+9;"R3";"R_1206_HandSoldering";1;"4,7k";;;
+10;"R2,R1";"R_1206_HandSoldering";2;"4.7k";;;
+11;"P1";"Molex-FPC_30";1;"CONN_01X30";;;
+12;"L1,L2,L3,L5,L6,L7,L8,L9,L11,L12,L4,L10";"R_0603_HandSoldering";12;"19nH";;;
+13;"D14,D13,D12,D11,D10,D9,D8,D7,D6,D5,D4,D3,D2,D1";"D_SMA_Standard";14;"ZENER";;;
+14;"IC1";"TSSOP-8_4.4x3mm_Pitch0.65mm";1;"AT24CS02-MAHM";;;

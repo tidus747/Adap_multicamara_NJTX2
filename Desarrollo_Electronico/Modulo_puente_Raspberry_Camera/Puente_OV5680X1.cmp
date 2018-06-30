@@ -1,0 +1,99 @@
+Cmp-Mod V01 Created by PcbNew   date = mié 14 feb 2018 15:09:05 WET
+
+BeginCmp
+TimeStamp = 5A8C8A69
+Path = 
+Reference = REF**;
+ValeurCmp = MountingHole_3.2mm_M3;
+IdModule  = Mounting_Holes:MountingHole_3.2mm_M3;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A8C8AB9
+Path = 
+Reference = REF**;
+ValeurCmp = MountingHole_3.2mm_M3;
+IdModule  = Mounting_Holes:MountingHole_3.2mm_M3;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A8C8AC6
+Path = 
+Reference = REF**;
+ValeurCmp = MountingHole_3.2mm_M3;
+IdModule  = Mounting_Holes:MountingHole_3.2mm_M3;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A8C8CA7
+Path = /5A8372A7
+Reference = C1;
+ValeurCmp = 0.1uF;
+IdModule  = Capacitors_SMD:C_1812_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A8C8DCB
+Path = /5A839EBC
+Reference = R1;
+ValeurCmp = 0;
+IdModule  = Resistors_SMD:R_1812_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A8C8DDC
+Path = /5A839D24
+Reference = R2;
+ValeurCmp = 0;
+IdModule  = Resistors_SMD:R_1812_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A8C8DED
+Path = /5A838084
+Reference = R3;
+ValeurCmp = 4,7k;
+IdModule  = Resistors_SMD:R_1812_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A8C8DFE
+Path = /5A838127
+Reference = R4;
+ValeurCmp = 4,7k;
+IdModule  = Resistors_SMD:R_1812_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A8C8E0F
+Path = /5A838422
+Reference = R5;
+ValeurCmp = 4,7k;
+IdModule  = Resistors_SMD:R_1812_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A8C8E2C
+Path = /5A836D8D
+Reference = U1;
+ValeurCmp = AT24CS02-MAHM;
+IdModule  = Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A8C8D2B
+Path = /5A8347D5
+Reference = J1;
+ValeurCmp = Conn_01x30;
+IdModule  = I-PEX-30:FPC_32;
+EndCmp
+
+BeginCmp
+TimeStamp = 5A8C8DBA
+Path = /5A8341DF
+Reference = P1;
+ValeurCmp = QTH-060-01-H-D-A;
+IdModule  = Modulo_puente:SOIC-120;
+EndCmp
+
+EndListe

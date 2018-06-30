@@ -1,0 +1,8 @@
+Qty,partname,description,lib
+0,"AT24CS01-MAHM","1Kb (128x8) Serial EEPROM with Unique Serial Number, UDFN8","memory"
+0,"C","Unpolarized capacitor","device"
+0,"CONN_01X30","Connector, single row, 01x30, pin header","conn"
+0,"EClamp2398P","","OV5680_MODULE-cache"
+0,"OV5680","","ov5680"
+0,"R","Resistor","device"
+0,"ZENER","","OV5680_MODULE-cache"

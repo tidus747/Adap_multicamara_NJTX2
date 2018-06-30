@@ -1,0 +1,8 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP QTH-060-01-H-D-A
+D Conector para expansión de cámara para Nvidia Jetson TX2
+K NVIDIA, JETSON TX1, JETSON TX2, GPU, CAMERA EXPANDER
+$ENDCMP
+#
+#End Doc Library
