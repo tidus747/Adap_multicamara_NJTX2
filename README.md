@@ -51,9 +51,9 @@ Algunos resultados en la estimación de disparidad usando el array de cámaras h
 </p>
 
 <p align="center">
-  <img width="800"  src="https://github.com/tidus747/Adap_multicamara_NJTX2/blob/master/images/Resultados/figure-self.png?raw=true">
+  <img width="650"  src="https://github.com/tidus747/Adap_multicamara_NJTX2/blob/master/images/Resultados/figure-self.png?raw=true">
 </p>
 
 <p align="center">
-  <img width="800"  src="https://github.com/tidus747/Adap_multicamara_NJTX2/blob/master/images/Resultados/figure-spiderman.png?raw=true">
+  <img width="650"  src="https://github.com/tidus747/Adap_multicamara_NJTX2/blob/master/images/Resultados/figure-spiderman.png?raw=true">
 </p>
