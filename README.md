@@ -1,4 +1,4 @@
-<img width="320" src="https://olimex.files.wordpress.com/2013/11/open_source_hardware_logo-t.png" align="right" />
+<img width="300" src="./images/Array_3D/soporte_frontal.png" align="right" />
 
 # Desarrollo de la adaptación para multicámara de la Nvidia Jetson TX2
 > Titulación: Máster en Ingeniería Industrial
@@ -29,4 +29,4 @@ of the array and some parts for physical calibration. The fabrication of the dif
 developed in the configuration of the kernel and the Device tree for the correct
 operation of the cameras. By Finally, the software calibration of the array of cameras and an algorithm for the estimation of disparity maps.
 
-## Organización del respositorio
+## Organización del repositorio
