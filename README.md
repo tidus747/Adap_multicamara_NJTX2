@@ -31,4 +31,29 @@ operation of the cameras. By Finally, the software calibration of the array of c
 
 ## Organización del repositorio
 
+La organización de los directorios principales de este repositorio es el siguiente:
+
+- [Capturas realizadas con el Array](https://github.com/tidus747/Adap_multicamara_NJTX2/tree/master/Array_captures)
+- [Ficheros fuente del desarrollo electrónico](https://github.com/tidus747/Adap_multicamara_NJTX2/tree/master/Desarrollo_Electronico)
+- [Ficheros fuente del desarrollo mecánico](https://github.com/tidus747/Adap_multicamara_NJTX2/tree/master/Desarrollo_Mecanico)
+- [Ficheros fuente del desarrollo de software](https://github.com/tidus747/Adap_multicamara_NJTX2/tree/master/Desarrollo_Software)
+
 ## Resultados
+
+Algunos resultados en la estimación de disparidad usando el array de cámaras han sido los siguientes:
+
+<p align="center">
+  <img width="800"  src="https://github.com/tidus747/Adap_multicamara_NJTX2/blob/master/images/Resultados/Figure_playmobil.png?raw=true">
+</p>
+
+<p align="center">
+  <img width="800"  src="https://github.com/tidus747/Adap_multicamara_NJTX2/blob/master/images/Resultados/Figure_playmobil_2.png?raw=true">
+</p>
+
+<p align="center">
+  <img width="800"  src="https://github.com/tidus747/Adap_multicamara_NJTX2/blob/master/images/Resultados/figure-self.png?raw=true">
+</p>
+
+<p align="center">
+  <img width="800"  src="https://github.com/tidus747/Adap_multicamara_NJTX2/blob/master/images/Resultados/figure-spiderman.png?raw=true">
+</p>
