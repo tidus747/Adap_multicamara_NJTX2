@@ -27,7 +27,7 @@ the NVIDIA Jetson TX2 development board. The design has been carried out of the
 different elements as well as the structural design for the the mechanical support
 of the array and some parts for physical calibration. The fabrication of the different mechanical and electronic elements, and the necessary software has been
 developed in the configuration of the kernel and the Device tree for the correct
-operation of the cameras. Finally, the software calibration of the array of cameras and an algorithm for the estimation of disparity maps.
+operation of the cameras. Finally, the software calibration of the array of cameras and an algorithm for the estimation of disparity maps have been proposed.
 
 ## Organización del repositorio
 
