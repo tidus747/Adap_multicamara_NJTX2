@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export INPUT_CAPS="video/x-raw(memory:NVMM),width=(int)1920,height=(int)1080,format=(string)I420,framerate=(fraction)30/1"
+export CONVERT_CAPS="video/x-raw, width=(int)320,height=(int)240,format=(string)I420,framerate=(fraction)30/1"
+
+DISPLAY=:0 gst-launch-1.0 nvcamerasrc sensor-id=0 fpsRange="30 30" ! $INPUT_CAPS ! nvvidconv ! $CONVERT_CAPS !  mixer.sink_1  nvcamerasrc sensor-id=1 fpsRange="30 30" ! $INPUT_CAPS ! nvvidconv ! $CONVERT_CAPS ! mixer.sink_2 nvcamerasrc sensor-id=2 fpsRange="30 30" ! $INPUT_CAPS ! nvvidconv ! $CONVERT_CAPS ! mixer.sink_3 nvcamerasrc  sensor-id=3 fpsRange="30 30" ! $INPUT_CAPS ! nvvidconv ! $CONVERT_CAPS ! mixer.sink_4 nvcamerasrc sensor-id=4 fpsRange="30 30" ! $INPUT_CAPS ! nvvidconv ! $CONVERT_CAPS ! mixer.sink_5 nvcamerasrc  sensor-id=5 fpsRange="30 30" ! $INPUT_CAPS ! nvvidconv ! $CONVERT_CAPS ! mixer.sink_6 videotestsrc pattern="black" ! video/x-raw,width=1,height=1 ! videomixer name=mixer sink_0::xpos=0 sink_0::ypos=0 sink_0::alpha=0 sink_1::xpos=320 sink_1::ypos=0 sink_2::xpos=0 sink_2::ypos=240 sink_3::xpos=320 sink_3::ypos=240 sink_4::xpos=0 sink_4::ypos=0 sink_5::xpos=640 sink_5::ypos=240 sink_6::xpos=640 sink_6::ypos=0 ! queue ! ximagesink sync=false -v

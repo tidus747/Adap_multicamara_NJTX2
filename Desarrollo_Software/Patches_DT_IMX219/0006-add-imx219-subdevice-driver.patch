@@ -1,0 +1,748 @@
+Index: sources/kernel/kernel-4.4/drivers/media/i2c/Kconfig
+===================================================================
+--- sources.orig/kernel/kernel-4.4/drivers/media/i2c/Kconfig	2017-05-25 15:52:21.785016451 -0600
++++ sources/kernel/kernel-4.4/drivers/media/i2c/Kconfig	2017-05-25 16:15:32.000000000 -0600
+@@ -565,11 +565,11 @@
+ 	  To compile this driver as a module, choose M here: the module
+ 	  will be called ov5693.
+ 
+-config VIDEO_IMX219
++config VIDEO_I2C_IMX219
+         tristate "IMX219 camera sensor support"
+ 	depends on I2C && VIDEO_V4L2 && VIDEO_V4L2_SUBDEV_API
+ 	---help---
+-	  This driver supports IMX219 camera sensor from Sony
++	  This is a Video4Linux2 sensor-level driver for the IMX219 camera.
+ 
+ 	  To compile this driver as a module, choose M here: the module
+ 	  will be called imx219.
+Index: sources/kernel/kernel-4.4/drivers/media/i2c/Makefile
+===================================================================
+--- sources.orig/kernel/kernel-4.4/drivers/media/i2c/Makefile	2017-05-25 15:52:21.785016451 -0600
++++ sources/kernel/kernel-4.4/drivers/media/i2c/Makefile	2017-05-25 16:15:32.000000000 -0600
+@@ -89,6 +89,7 @@
+ obj-$(CONFIG_VIDEO_OV23850) += ov23850.o
+ obj-$(CONFIG_VIDEO_LC898212) += lc898212.o
+ obj-$(CONFIG_VIDEO_OV5693) += ov5693.o
++obj-$(CONFIG_VIDEO_I2C_IMX219) += imx219.o
+ obj-$(CONFIG_VIDEO_IMX219) += imx219.o
+ obj-$(CONFIG_VIDEO_IMX274) += imx274.o
+ obj-$(CONFIG_VIDEO_TC358840)	+= tc358840.o
+Index: sources/kernel/kernel-4.4/drivers/media/i2c/imx219.c
+===================================================================
+--- sources.orig/kernel/kernel-4.4/drivers/media/i2c/imx219.c	2017-05-25 15:52:21.785016451 -0600
++++ sources/kernel/kernel-4.4/drivers/media/i2c/imx219.c	2017-05-25 17:09:43.580982205 -0600
+@@ -15,7 +15,7 @@
+  * You should have received a copy of the GNU General Public License
+  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  */
+-
++#define DEBUG 1
+ #include <dt-bindings/gpio/tegra-gpio.h>
+ #include <linux/slab.h>
+ #include <linux/uaccess.h>
+@@ -27,6 +27,9 @@
+ #include <linux/of_device.h>
+ #include <linux/of_gpio.h>
+ 
++#include <linux/i2c-dev.h>
++#include <linux/fs.h>
++
+ #include <media/camera_common.h>
+ #include <media/soc_camera.h>
+ #include <media/imx219.h>
+@@ -49,11 +52,12 @@
+ #define IMX219_DEFAULT_EXPOSURE_COARSE	\
+ 	(IMX219_DEFAULT_FRAME_LENGTH-IMX219_MAX_COARSE_DIFF)
+ 
+-#define IMX219_DEFAULT_MODE	IMX219_MODE_3280x2464
++#define IMX219_DEFAULT_MODE		IMX219_MODE_3280x2464
+ #define IMX219_DEFAULT_WIDTH	3280
+ #define IMX219_DEFAULT_HEIGHT	2464
+ #define IMX219_DEFAULT_DATAFMT	MEDIA_BUS_FMT_SRGGB10_1X10
+-#define IMX219_DEFAULT_CLK_FREQ	12000000
++#define IMX219_DEFAULT_CLK_FREQ	24000000
++#define IMX219_DEFAULT_MAX_FRAMERATE 30
+ 
+ struct imx219 {
+ 	struct camera_common_power_rail	power;
+@@ -191,16 +195,6 @@
+ 					 IMX219_TABLE_END);
+ }
+ 
+-static void imx219_mclk_disable(struct camera_common_power_rail *pw)
+-{
+-	clk_disable_unprepare(pw->mclk);
+-}
+-
+-static void imx219_mclk_enable(struct camera_common_power_rail *pw)
+-{
+-	clk_set_rate(pw->mclk, IMX219_DEFAULT_CLK_FREQ);
+-	clk_prepare_enable(pw->mclk);
+-}
+ 
+ static int imx219_power_on(struct camera_common_data *s_data)
+ {
+@@ -209,11 +203,11 @@
+ 	struct camera_common_power_rail *pw = &priv->power;
+ 
+ 	dev_dbg(&priv->i2c_client->dev, "%s: power on\n", __func__);
+-
+-	if (gpio_cansleep(pw->reset_gpio))
++	/*Avoid toggling RST GPIO */
++	/*if (gpio_cansleep(pw->reset_gpio))
+ 		gpio_set_value_cansleep(pw->reset_gpio, 0);
+ 	else
+-		gpio_set_value(pw->reset_gpio, 0);
++		gpio_set_value(pw->reset_gpio, 0);*/
+ 	usleep_range(10, 20);
+ 
+ 	if (pw->avdd)
+@@ -232,13 +226,20 @@
+ 		goto imx219_dvdd_fail;
+ 
+ 	usleep_range(1, 2);
+-	if (gpio_cansleep(pw->reset_gpio))
++	/*if (gpio_cansleep(pw->reset_gpio))
+ 		gpio_set_value_cansleep(pw->reset_gpio, 1);
+ 	else
+-		gpio_set_value(pw->reset_gpio, 1);
++		gpio_set_value(pw->reset_gpio, 1); */
++
++    if (!gpio_get_value(pw->reset_gpio))
++        gpio_set_value(pw->reset_gpio, 1);
+ 
++    dev_dbg(&priv->i2c_client->dev, "%s: JJ power on , value: %d \n", __func__, gpio_get_value(pw->reset_gpio));
++	if (gpio_cansleep(pw->reset_gpio))
++		gpio_set_value_cansleep(pw->reset_gpio, 1);
++	dev_dbg(&priv->i2c_client->dev, "%s: JJ power on , value: %d \n", __func__, gpio_get_value(pw->reset_gpio));
+ 	usleep_range(1, 2);
+-	imx219_mclk_enable(pw);
++
+ 
+ 	/* Need to wait for t4 + t5 + t9 time as per the data sheet */
+ 	/* t4 - 200us, t5 - 6ms, t9 - 1.2ms */
+@@ -265,10 +266,10 @@
+ 	dev_dbg(&priv->i2c_client->dev, "%s: power off\n", __func__);
+ 
+ 	usleep_range(1, 2);
+-	if (gpio_cansleep(pw->reset_gpio))
++	/*if (gpio_cansleep(pw->reset_gpio))
+ 		gpio_set_value_cansleep(pw->reset_gpio, 0);
+ 	else
+-		gpio_set_value(pw->reset_gpio, 0);
++		gpio_set_value(pw->reset_gpio, 0);*/
+ 	usleep_range(1, 2);
+ 
+ 	if (pw->dvdd)
+@@ -278,7 +279,6 @@
+ 	if (pw->avdd)
+ 		regulator_disable(pw->avdd);
+ 
+-	imx219_mclk_disable(pw);
+ 	pw->state = SWITCH_OFF;
+ 	return 0;
+ }
+@@ -312,27 +312,18 @@
+ 	const char *mclk_name;
+ 	int err = 0;
+ 
+-	mclk_name = priv->pdata->mclk_name ?
++	/*mclk_name = priv->pdata->mclk_name ?
+ 		    priv->pdata->mclk_name : "cam_mclk1";
+ 	pw->mclk = devm_clk_get(&priv->i2c_client->dev, mclk_name);
+ 	if (IS_ERR(pw->mclk)) {
+ 		dev_err(&priv->i2c_client->dev,
+ 			"unable to get clock %s\n", mclk_name);
+ 		return PTR_ERR(pw->mclk);
+-	}
+-
+-	/* ananlog 2.7v */
+-	err |= camera_common_regulator_get(priv->i2c_client,
+-			&pw->avdd, pdata->regulators.avdd);
+-	/* digital 1.2v */
+-	err |= camera_common_regulator_get(priv->i2c_client,
+-			&pw->dvdd, pdata->regulators.dvdd);
+-	/* IO 1.8v */
+-	err |= camera_common_regulator_get(priv->i2c_client,
+-			&pw->iovdd, pdata->regulators.iovdd);
++	}*/
+ 
+-	if (!err)
+-		pw->reset_gpio = pdata->reset_gpio;
++	pw->reset_gpio = pdata->reset_gpio;
++	if (!gpio_get_value(pw->reset_gpio))
++		gpio_set_value(pw->reset_gpio, 1);
+ 
+ 	pw->state = SWITCH_OFF;
+ 	return err;
+@@ -354,6 +345,8 @@
+ 	if (!enable)
+ 		return 0;
+ 
++	dev_dbg(&client->dev, "%s mode: %d \n", __func__,s_data->mode );
++
+ 	err = imx219_write_table(priv, mode_table[s_data->mode]);
+ 	if (err)
+ 		goto exit;
+@@ -388,6 +381,13 @@
+ {
+ 	int ret;
+ 
++	/*if (!format->format.maxframerate) {
++		if (3280 == format->format.width)
++			format->format.maxframerate=imx219_21fps[0];
++		else
++			format->format.maxframerate=imx219_30fps[0];
++	}*/
++
+ 	if (format->which == V4L2_SUBDEV_FORMAT_TRY)
+ 		ret = camera_common_try_fmt(sd, &format->format);
+ 	else
+@@ -782,6 +782,9 @@
+ 	common_data->fmt_width		= common_data->def_width;
+ 	common_data->fmt_height		= common_data->def_height;
+ 	common_data->def_clk_freq	= IMX219_DEFAULT_CLK_FREQ;
++    common_data->mode		= IMX219_DEFAULT_MODE;
++	/*common_data->def_maxfps		= IMX219_DEFAULT_MAX_FRAMERATE;
++	common_data->fmt_maxfps		= common_data->def_maxfps;*/
+ 
+ 	priv->i2c_client		= client;
+ 	priv->s_data			= common_data;
+@@ -801,11 +804,11 @@
+ 	err = imx219_ctrls_init(priv);
+ 	if (err)
+ 		return err;
+-
+-	err = imx219_verify_streaming(priv);
++/*Workaround to avoid not loading the driver at boot time*/
++/*	err = imx219_verify_streaming(priv);
+ 	if (err)
+ 		return err;
+-
++*/
+ 	priv->subdev->internal_ops = &imx219_subdev_internal_ops;
+ 	priv->subdev->flags |= V4L2_SUBDEV_FL_HAS_DEVNODE |
+ 		     V4L2_SUBDEV_FL_HAS_EVENTS;
+Index: sources/kernel/kernel-4.4/drivers/media/i2c/imx219_mode_tbls.h
+===================================================================
+--- sources.orig/kernel/kernel-4.4/drivers/media/i2c/imx219_mode_tbls.h	2017-05-25 15:52:21.785016451 -0600
++++ sources/kernel/kernel-4.4/drivers/media/i2c/imx219_mode_tbls.h	2017-05-25 15:52:21.781016451 -0600
+@@ -37,10 +37,11 @@
+ 	{0x30EB, 0x09},
+ 	{0x0114, 0x01},
+ 	{0x0128, 0x00},
+-	{0x012A, 0x0C},
++	{0x012A, 0x18},
+ 	{0x012B, 0x00},
++	/* Bank A Settings */
+ 	{0x0160, 0x09},
+-	{0x0161, 0xC3},
++	{0x0161, 0xC8},
+ 	{0x0162, 0x0D},
+ 	{0x0163, 0x78},
+ 	{0x0164, 0x00},
+@@ -61,26 +62,36 @@
+ 	{0x0175, 0x00},
+ 	{0x018C, 0x0A},
+ 	{0x018D, 0x0A},
++	/* clock settings */
+ 	{0x0301, 0x05},
+ 	{0x0303, 0x01},
+-	{0x0304, 0x02},
+-	{0x0305, 0x02},
++	{0x0304, 0x03},
++	{0x0305, 0x03},
+ 	{0x0306, 0x00},
+-	{0x0307, 0x4C},
++	{0x0307, 0x2B},
+ 	{0x0309, 0x0A},
+ 	{0x030B, 0x01},
+ 	{0x030C, 0x00},
+-	{0x030D, 0x98},
++	{0x030D, 0x55},
++	{0x455E, 0x00},
++	{0x471E, 0x4B},
+ 	{0x4767, 0x0F},
+ 	{0x4750, 0x14},
++	{0x4540, 0x00},
+ 	{0x47B4, 0x14},
++	{0x4713, 0x30},
++	{0x478B, 0x10},
++	{0x478F, 0x10},
++	{0x4797, 0x0E},
++	{0x479B, 0x0E},
++	{0x5041, 0x00},
+ 	/* stream on */
+ 	{0x0100, 0x01},
+ 	{IMX219_TABLE_WAIT_MS, IMX219_WAIT_MS},
+ 	{IMX219_TABLE_END, 0x00}
+ };
+ 
+-static struct reg_8 mode_3280x2460[] = {
++static struct reg_8 mode_3280x2464_tpg[] = {
+ 	{IMX219_TABLE_WAIT_MS, 10},
+ 	/* software reset */
+ 	{0x0103, 0x01},
+@@ -91,16 +102,13 @@
+ 	{0x300B, 0xFF},
+ 	{0x30EB, 0x05},
+ 	{0x30EB, 0x09},
+-	{0x0114, 0x03},
++	{0x0114, 0x01},
+ 	{0x0128, 0x00},
+ 	{0x012A, 0x18},
+ 	{0x012B, 0x00},
+ 	/* Bank A Settings */
+-	{0x0157, 0x00},
+-	{0x015A, 0x08},
+-	{0x015B, 0x8F},
+-	{0x0160, 0x0A},
+-	{0x0161, 0x83},
++	{0x0160, 0x09},
++	{0x0161, 0xC8},
+ 	{0x0162, 0x0D},
+ 	{0x0163, 0x78},
+ 	{0x0164, 0x00},
+@@ -114,50 +122,24 @@
+ 	{0x016C, 0x0C},
+ 	{0x016D, 0xD0},
+ 	{0x016E, 0x09},
+-	{0x016F, 0x9C},
++	{0x016F, 0xA0},
+ 	{0x0170, 0x01},
+ 	{0x0171, 0x01},
+ 	{0x0174, 0x00},
+ 	{0x0175, 0x00},
+ 	{0x018C, 0x0A},
+ 	{0x018D, 0x0A},
+-	/* Bank B Settings */
+-	{0x0257, 0x00},
+-	{0x025A, 0x08},
+-	{0x025B, 0x8F},
+-	{0x0260, 0x0A},
+-	{0x0261, 0x83},
+-	{0x0262, 0x0D},
+-	{0x0263, 0x78},
+-	{0x0264, 0x00},
+-	{0x0265, 0x00},
+-	{0x0266, 0x0C},
+-	{0x0267, 0xCF},
+-	{0x0268, 0x00},
+-	{0x0269, 0x00},
+-	{0x026A, 0x09},
+-	{0x026B, 0x9F},
+-	{0x026C, 0x0C},
+-	{0x026D, 0xD0},
+-	{0x026E, 0x09},
+-	{0x026F, 0x9C},
+-	{0x0270, 0x01},
+-	{0x0271, 0x01},
+-	{0x0274, 0x00},
+-	{0x0275, 0x00},
+-	{0x028C, 0x0A},
+-	{0x028D, 0x0A},
+-	/* clock setting */
++	/* clock settings */
+ 	{0x0301, 0x05},
+ 	{0x0303, 0x01},
+ 	{0x0304, 0x03},
+ 	{0x0305, 0x03},
+ 	{0x0306, 0x00},
+-	{0x0307, 0x57},
++	{0x0307, 0x2B},
+ 	{0x0309, 0x0A},
+ 	{0x030B, 0x01},
+ 	{0x030C, 0x00},
+-	{0x030D, 0x5A},
++	{0x030D, 0x55},
+ 	{0x455E, 0x00},
+ 	{0x471E, 0x4B},
+ 	{0x4767, 0x0F},
+@@ -167,15 +149,28 @@
+ 	{0x4713, 0x30},
+ 	{0x478B, 0x10},
+ 	{0x478F, 0x10},
+-	{0x4793, 0x10},
+ 	{0x4797, 0x0E},
+ 	{0x479B, 0x0E},
++	{0x5041, 0x00},
++	/* TP generator */
++	{0x0600, 0x00},
++	{0x0601, 0x02},
++	{0x0612, 0x02},
++	{0x0620, 0x00},
++	{0x0621, 0x00},
++	{0x0622, 0x00},
++	{0x0623, 0x00},
++	{0x0624, 0x0C},
++	{0x0625, 0xD0},
++	{0x0626, 0x09},
++	{0x0627, 0xA0},
+ 	/* stream on */
+ 	{0x0100, 0x01},
+ 	{IMX219_TABLE_WAIT_MS, IMX219_WAIT_MS},
+ 	{IMX219_TABLE_END, 0x00}
+ };
+-static struct reg_8 mode_3280x1846[] = {
++
++static struct reg_8 mode_1920x1080[] = {
+ 	{IMX219_TABLE_WAIT_MS, 10},
+ 	/* software reset */
+ 	{0x0103, 0x01},
+@@ -186,73 +181,110 @@
+ 	{0x300B, 0xFF},
+ 	{0x30EB, 0x05},
+ 	{0x30EB, 0x09},
+-	{0x0114, 0x03},
++	{0x0114, 0x01},
+ 	{0x0128, 0x00},
+ 	{0x012A, 0x18},
+ 	{0x012B, 0x00},
+ 	/* Bank A Settings */
+-	{0x0157, 0x00},
+-	{0x015A, 0x08},
+-	{0x015B, 0x8F},
+-	{0x0160, 0x07},
+-	{0x0161, 0x5E},
++	{0x0160, 0x04},
++	{0x0161, 0x59},
++	{0x0162, 0x0D},
++	{0x0163, 0x78},
++	{0x0164, 0x02},
++	{0x0165, 0xA8},
++	{0x0166, 0x0A},
++	{0x0167, 0x27},
++	{0x0168, 0x02},
++	{0x0169, 0xB4},
++	{0x016A, 0x06},
++	{0x016B, 0xEB},
++	{0x016C, 0x07},
++	{0x016D, 0x80},
++	{0x016E, 0x04},
++	{0x016F, 0x38},
++	{0x0170, 0x01},
++	{0x0171, 0x01},
++	{0x0174, 0x00},
++	{0x0175, 0x00},
++	{0x018C, 0x0A},
++	{0x018D, 0x0A},
++	/* clock settings */
++	{0x0301, 0x05},
++	{0x0303, 0x01},
++	{0x0304, 0x03},
++	{0x0305, 0x03},
++	{0x0306, 0x00},
++	{0x0307, 0x39},
++	{0x0309, 0x0A},
++	{0x030B, 0x01},
++	{0x030C, 0x00},
++	{0x030D, 0x72},
++	{0x455E, 0x00},
++	{0x471E, 0x4B},
++	{0x4767, 0x0F},
++	{0x4750, 0x14},
++	{0x4540, 0x00},
++	{0x47B4, 0x14},
++	{0x4713, 0x30},
++	{0x478B, 0x10},
++	{0x478F, 0x10},
++	{0x4797, 0x0E},
++	{0x479B, 0x0E},
++	/* stream on */
++	{0x0100, 0x01},
++	{IMX219_TABLE_WAIT_MS, IMX219_WAIT_MS},
++	{IMX219_TABLE_END, 0x00}
++};
++
++static struct reg_8 mode_1640x1232[] = {
++	{IMX219_TABLE_WAIT_MS, 10},
++	/* software reset */
++	{0x0103, 0x01},
++	/* global settings */
++	{0x30EB, 0x05},
++	{0x30EB, 0x0C},
++	{0x300A, 0xFF},
++	{0x300B, 0xFF},
++	{0x30EB, 0x05},
++	{0x30EB, 0x09},
++	{0x0114, 0x01},
++	{0x0128, 0x00},
++	{0x012A, 0x18},
++	{0x012B, 0x00},
++	/* Bank A Settings */
++	{0x0160, 0x05},
++	{0x0161, 0x07},
+ 	{0x0162, 0x0D},
+ 	{0x0163, 0x78},
+ 	{0x0164, 0x00},
+ 	{0x0165, 0x00},
+ 	{0x0166, 0x0C},
+ 	{0x0167, 0xCF},
+-	{0x0168, 0x01},
+-	{0x0169, 0x36},
+-	{0x016A, 0x08},
+-	{0x016B, 0x6B},
+-	{0x016C, 0x0C},
+-	{0x016D, 0xD0},
+-	{0x016E, 0x07},
+-	{0x016F, 0x36},
++	{0x0168, 0x00},
++	{0x0169, 0x00},
++	{0x016A, 0x09},
++	{0x016B, 0x9F},
++	{0x016C, 0x06},
++	{0x016D, 0x68},
++	{0x016E, 0x04},
++	{0x016F, 0xD0},
+ 	{0x0170, 0x01},
+ 	{0x0171, 0x01},
+-	{0x0174, 0x00},
+-	{0x0175, 0x00},
++	{0x0174, 0x01},
++	{0x0175, 0x01},
+ 	{0x018C, 0x0A},
+ 	{0x018D, 0x0A},
+-	/* Bank B Settings */
+-	{0x0257, 0x00},
+-	{0x025A, 0x08},
+-	{0x025B, 0x8F},
+-	{0x0260, 0x07},
+-	{0x0261, 0x5E},
+-	{0x0262, 0x0D},
+-	{0x0263, 0x78},
+-	{0x0264, 0x00},
+-	{0x0265, 0x00},
+-	{0x0266, 0x0C},
+-	{0x0267, 0xCF},
+-	{0x0268, 0x01},
+-	{0x0269, 0x36},
+-	{0x026A, 0x08},
+-	{0x026B, 0x6B},
+-	{0x026C, 0x0C},
+-	{0x026D, 0xD0},
+-	{0x026E, 0x07},
+-	{0x026F, 0x36},
+-	{0x0270, 0x01},
+-	{0x0271, 0x01},
+-	{0x0274, 0x00},
+-	{0x0275, 0x00},
+-	{0x028C, 0x0A},
+-	{0x028D, 0x0A},
+-	/* clock setting */
++	/* clock settings */
+ 	{0x0301, 0x05},
+ 	{0x0303, 0x01},
+ 	{0x0304, 0x03},
+ 	{0x0305, 0x03},
+ 	{0x0306, 0x00},
+-	{0x0307, 0x57},
++	{0x0307, 0x2B},
+ 	{0x0309, 0x0A},
+ 	{0x030B, 0x01},
+ 	{0x030C, 0x00},
+-	{0x030D, 0x5A},
++	{0x030D, 0x55},
+ 	{0x455E, 0x00},
+ 	{0x471E, 0x4B},
+ 	{0x4767, 0x0F},
+@@ -262,9 +294,9 @@
+ 	{0x4713, 0x30},
+ 	{0x478B, 0x10},
+ 	{0x478F, 0x10},
+-	{0x4793, 0x10},
+ 	{0x4797, 0x0E},
+ 	{0x479B, 0x0E},
++	{0x5041, 0x00},
+ 	/* stream on */
+ 	{0x0100, 0x01},
+ 	{IMX219_TABLE_WAIT_MS, IMX219_WAIT_MS},
+@@ -282,7 +314,7 @@
+ 	{0x300B, 0xFF},
+ 	{0x30EB, 0x05},
+ 	{0x30EB, 0x09},
+-	{0x0114, 0x03},
++	{0x0114, 0x01},
+ 	{0x0128, 0x00},
+ 	{0x012A, 0x18},
+ 	{0x012B, 0x00},
+@@ -291,48 +323,25 @@
+ 	{0x0161, 0x8C},
+ 	{0x0162, 0x0D},
+ 	{0x0163, 0xE8},
+-	{0x0164, 0x01},
+-	{0x0165, 0x68},
+-	{0x0166, 0x0B},
+-	{0x0167, 0x67},
+-	{0x0168, 0x02},
+-	{0x0169, 0x00},
+-	{0x016A, 0x07},
+-	{0x016B, 0x9F},
++	{0x0164, 0x03},
++	{0x0165, 0xE8},
++	{0x0166, 0x08},
++	{0x0167, 0xE7},
++	{0x0168, 0x03},
++	{0x0169, 0x68},
++	{0x016A, 0x06},
++	{0x016B, 0x37},
+ 	{0x016C, 0x05},
+ 	{0x016D, 0x00},
+ 	{0x016E, 0x02},
+ 	{0x016F, 0xD0},
+ 	{0x0170, 0x01},
+ 	{0x0171, 0x01},
+-	{0x0174, 0x03},
+-	{0x0175, 0x03},
++	{0x0174, 0x00},
++	{0x0175, 0x00},
+ 	{0x018C, 0x0A},
+ 	{0x018D, 0x0A},
+-	/* Bank B Settings */
+-	{0x0260, 0x02},
+-	{0x0261, 0x8C},
+-	{0x0262, 0x0D},
+-	{0x0263, 0xE8},
+-	{0x0264, 0x01},
+-	{0x0265, 0x68},
+-	{0x0266, 0x0B},
+-	{0x0267, 0x67},
+-	{0x0268, 0x02},
+-	{0x0269, 0x00},
+-	{0x026A, 0x07},
+-	{0x026B, 0x9F},
+-	{0x026C, 0x05},
+-	{0x026D, 0x00},
+-	{0x026E, 0x02},
+-	{0x026F, 0xD0},
+-	{0x0270, 0x01},
+-	{0x0271, 0x01},
+-	{0x0274, 0x03},
+-	{0x0275, 0x03},
+-	{0x028C, 0x0A},
+-	{0x028D, 0x0A},
+-	/* clock setting */
++	/* clock settings */
+ 	{0x0301, 0x05},
+ 	{0x0303, 0x01},
+ 	{0x0304, 0x03},
+@@ -355,34 +364,111 @@
+ 	{0x4793, 0x10},
+ 	{0x4797, 0x0E},
+ 	{0x479B, 0x0E},
++	{0x5041, 0x00},
+ 	/* stream on */
+ 	{0x0100, 0x01},
+ 	{IMX219_TABLE_WAIT_MS, IMX219_WAIT_MS},
+ 	{IMX219_TABLE_END, 0x00}
+ };
++
++static struct reg_8 mode_820x616[] = {
++	{IMX219_TABLE_WAIT_MS, 10},
++	/* software reset */
++	{0x0103, 0x01},
++	/* global settings */
++	{0x30EB, 0x05},
++	{0x30EB, 0x0C},
++	{0x300A, 0xFF},
++	{0x300B, 0xFF},
++	{0x30EB, 0x05},
++	{0x30EB, 0x09},
++	{0x0114, 0x01},
++	{0x0128, 0x00},
++	{0x012A, 0x18},
++	{0x012B, 0x00},
++	/* Bank A Settings */
++	{0x0160, 0x05},
++	{0x0161, 0x37},
++	{0x0162, 0x0D},
++	{0x0163, 0x78},
++	{0x0164, 0x00},
++	{0x0165, 0x00},
++	{0x0166, 0x0C},
++	{0x0167, 0xCF},
++	{0x0168, 0x00},
++	{0x0169, 0x00},
++	{0x016A, 0x09},
++	{0x016B, 0x9F},
++	{0x016C, 0x03},
++	{0x016D, 0x34},
++	{0x016E, 0x02},
++	{0x016F, 0x68},
++	{0x0170, 0x01},
++	{0x0171, 0x01},
++	{0x0174, 0x02},
++	{0x0175, 0x02},
++	{0x018C, 0x0A},
++	{0x018D, 0x0A},
++	/* clock setting */
++	{0x0301, 0x05},
++	{0x0303, 0x01},
++	{0x0304, 0x03},
++	{0x0305, 0x03},
++	{0x0306, 0x00},
++	{0x0307, 0x2B},
++	{0x0309, 0x0A},
++	{0x030B, 0x01},
++	{0x030C, 0x00},
++	{0x030D, 0x55},
++	{0x455E, 0x00},
++	{0x471E, 0x4B},
++	{0x4767, 0x0F},
++	{0x4750, 0x14},
++	{0x4540, 0x00},
++	{0x47B4, 0x14},
++	{0x4713, 0x30},
++	{0x478B, 0x10},
++	{0x478F, 0x10},
++	{0x4797, 0x0E},
++	{0x479B, 0x0E},
++	{0x5041, 0x00},
++	/* stream on */
++	{0x0100, 0x01},
++	{IMX219_TABLE_WAIT_MS, IMX219_WAIT_MS},
++	{IMX219_TABLE_END, 0x00}
++};
++
++
+ enum {
+ 	IMX219_MODE_3280x2464,
+-	IMX219_MODE_3280x2460,
+-	IMX219_MODE_3280x1846,
++	IMX219_MODE_1920x1080,
++	IMX219_MODE_1640x1232,
+ 	IMX219_MODE_1280x720,
++	IMX219_MODE_820x616,
+ };
+ 
+ static struct reg_8 *mode_table[] = {
+ 	[IMX219_MODE_3280x2464] = mode_3280x2464,
+-	[IMX219_MODE_3280x2460] = mode_3280x2460,
+-	[IMX219_MODE_3280x1846] = mode_3280x1846,
++	[IMX219_MODE_1920x1080] = mode_1920x1080,
++	[IMX219_MODE_1640x1232] = mode_1640x1232,
+ 	[IMX219_MODE_1280x720]  = mode_1280x720,
++	[IMX219_MODE_820x616]  = mode_820x616,
+ };
+ 
+ static const int imx219_21fps[] = {
+-	20,
++	21,
++};
++
++static const int imx219_30fps[] = {
++	30,
+ };
+ 
+ static const struct camera_common_frmfmt imx219_frmfmt[] = {
+ 	{{3280, 2464},	imx219_21fps, 1, 0, IMX219_MODE_3280x2464},
+-	{{3280, 2460},	imx219_21fps, 1, 0, IMX219_MODE_3280x2460},
+-	{{3280, 1846},	imx219_21fps, 1, 0, IMX219_MODE_3280x1846},
+-	{{1280, 720},	NULL, 0, 0, IMX219_MODE_1280x720},
++	{{1920, 1080},	imx219_30fps, 1, 0, IMX219_MODE_1920x1080},
++	{{1640, 1232},	imx219_30fps, 1, 0, IMX219_MODE_1640x1232},
++	{{1280, 720},	imx219_30fps, 1, 0, IMX219_MODE_1280x720},
++	{{820, 616},	imx219_30fps, 1, 0, IMX219_MODE_820x616},
+ };
+ 
+ #endif

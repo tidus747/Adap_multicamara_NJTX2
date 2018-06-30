@@ -1,0 +1,9 @@
+
+#include <t18x-common-modules/tegra186-my-camera-config-a00.dtsi>
+
+
+/ {
+	tegra-camera-platform {
+		tpg_max_iso = <3916800>;
+	};
+};
