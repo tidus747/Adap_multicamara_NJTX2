@@ -41,12 +41,12 @@ La organización de los directorios principales de este repositorio es el siguie
 ## Imágenes del sistema desarrollado
 
 <p align="center">
-  <img width="800"  src="https://github.com/tidus747/Adap_multicamara_NJTX2/blob/master/images/Array_real/Array_final_1.jpg">
+  <img width="650"  src="https://github.com/tidus747/Adap_multicamara_NJTX2/blob/master/images/Array_real/Array_final_1.jpg">
 </p>
 
 
 <p align="center">
-  <img width="800"  src="https://github.com/tidus747/Adap_multicamara_NJTX2/blob/master/images/Array_real/Array_final_2.jpg">
+  <img width="650"  src="https://github.com/tidus747/Adap_multicamara_NJTX2/blob/master/images/Array_real/Array_final_2.jpg">
 </p>
 
 
