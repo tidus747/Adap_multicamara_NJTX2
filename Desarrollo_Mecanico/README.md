@@ -13,8 +13,16 @@ Las plantillas para los planos utilizadas son:
 
 # Diseño realizado
 
-A continuación puede verse una imagen del *array* de cámaras desarrollado:
+A continuación puede verse una imagen del *array* de cámaras desarrollado, además del ajustador de cámaras:
 
 <p align="center">
   <img width="800"  src="https://github.com/tidus747/Adap_multicamara_NJTX2/blob/master/images/Array_3D%20/soporte_frontal.png">
+</p>
+
+<p align="center">
+  <img width="800"  src="https://github.com/tidus747/Adap_multicamara_NJTX2/blob/master/images/Array_3D%20/soporte_trasero.png">
+</p>
+
+<p align="center">
+  <img width="800"  src="https://github.com/tidus747/Adap_multicamara_NJTX2/blob/master/images/Array_3D%20/ajustador_completo.png">
 </p>

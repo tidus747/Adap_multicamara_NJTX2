@@ -38,6 +38,18 @@ La organización de los directorios principales de este repositorio es el siguie
 - [Ficheros fuente del desarrollo mecánico](https://github.com/tidus747/Adap_multicamara_NJTX2/tree/master/Desarrollo_Mecanico)
 - [Ficheros fuente del desarrollo de software](https://github.com/tidus747/Adap_multicamara_NJTX2/tree/master/Desarrollo_Software)
 
+## Imágenes del sistema desarrollado
+
+<p align="center">
+  <img width="800"  src="https://github.com/tidus747/Adap_multicamara_NJTX2/blob/master/images/Array_real/Array_final_1.jpg">
+</p>
+
+
+<p align="center">
+  <img width="800"  src="https://github.com/tidus747/Adap_multicamara_NJTX2/blob/master/images/Array_real/Array_final_2.jpg">
+</p>
+
+
 ## Resultados
 
 Algunos resultados en la estimación de disparidad usando el array de cámaras han sido los siguientes:
